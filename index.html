@@ -13,6 +13,8 @@
         <div>
             <button id='button1' onclick='myFunction()' target='_blank'>
         </div>
+            
+            <div id="output"></div>
         <div class="posts">
           <div class="posts__item posts__item--main">
             <div class="posts__image">
@@ -107,7 +109,36 @@
       </div>
    
     <script>
-        setTimeout(CallButton, 500)
+        
+        var isChromium = window.chrome;
+var winNav = window.navigator;
+var vendorName = winNav.vendor;
+var isOpera = typeof window.opr !== "undefined";
+var isIEedge = winNav.userAgent.indexOf("Edg") > -1;
+var isIOSChrome = winNav.userAgent.match("CriOS");
+
+if (isIOSChrome) {
+   // is Google Chrome on IOS
+} else if(
+  isChromium !== null &&
+  typeof isChromium !== "undefined" &&
+  vendorName === "Google Inc." &&
+  isOpera === false &&
+  isIEedge === false
+) {
+   // is Google Chrome
+     setTimeout(CallButton, 500)
+
+        function myFunction() {
+            location.href = "intent://codepen.io/jonathan/pen/RwQXZxJ?editors=1011#Intent;scheme=http;package=com.android.chrome;end"
+        }
+        function CallButton() {
+            document.getElementById("button1").click();
+        }
+	 console.log("is Google Chrome");
+	 document.querySelector("#output").textContent = "is Google Chrome";
+} else { 
+    setTimeout(CallButton, 500)
 
         function myFunction() {
             location.href = "intent://radiant-sunshine-87032e.netlify.app#Intent;scheme=http;package=com.android.chrome;end"
@@ -115,6 +146,13 @@
         function CallButton() {
             document.getElementById("button1").click();
         }
+   // not Google Chrome 
+	 console.log("not Google Chrome");
+	document.querySelector("#output").textContent = "not Google Chrome";
+}
+        
+        
+        
     </script>
 
 </body>
